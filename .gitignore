@@ -128,5 +128,8 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# Legacy File
+# Legacy files
 legacy/
+
+# Key files
+key/
