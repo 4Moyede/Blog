@@ -133,3 +133,6 @@ legacy/
 
 # Key files
 key/
+
+# Mac
+.DS_Store
