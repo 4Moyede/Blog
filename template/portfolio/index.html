@@ -65,16 +65,15 @@
           </div>
         </div>
         <div class="col-lg-6 offset-lg-1 wow fadeInRight">
-          <h1 class="fw-light">강형구</h1>
-          <h5 class="fg-theme mb-3">Software Engineer</h5>
+          <h1 class="fw-light">{{ introduce.name }}</h1>
+          <h5 class="fg-theme mb-3">{{ introduce.jobGrp }}</h5>
           <p class="text-muted">
-            There are many variations of passages of Lorem Ipsum available, but the majority have
-            suffered alteration in some form but the majority have suffered alteration in some
+            {{ introduce.aboutMe }}
           </p>
           <ul class="theme-list">
-            <li><b>From:</b> Seoul, South Korea</li>
-            <li><b>Age:</b> 31</li>
-            <li><b>Gender:</b> Male</li>
+            {% for map in about %}
+            <li><b>{{ map.key }} :</b> {{ map.val }}</li>
+            {% endfor %}
           </ul>
         </div>
       </div>
@@ -84,94 +83,81 @@
         <div class="col-md-6 wow fadeInRight">
           <h2 class="fw-normal">Study</h2>
           <ul class="timeline mt-4 pr-md-5">
+            {% for dic in study %}
             <li>
-              <div class="title">23.09</div>
+              <div class="title">{{ dic.date }}</div>
               <div class="details">
-                <h5>SQLD</h5>
-                <small class="fg-theme">Lisence</small>
-                <p>Kdata 데이터자격검정, SQL Developer</p>
+                <h5>{{ dic.title }}</h5>
+                <small class="fg-theme">{{ dic.subTitle }}</small>
+                <p>{{ dic.content }}</p>
               </div>
             </li>
-            <li>
-              <div class="title">14.03 ~ 21.02</div>
-              <div class="details">
-                <h5>경희대학교</h5>
-                <small class="fg-theme">University</small>
-                <p>컴퓨터공학과 학사 졸업</p>
-              </div>
-            </li>
+            {% endfor %}
           </ul>
         </div>
         <div class="col-md-6 wow fadeInRight" data-wow-delay="200ms">
           <h2 class="fw-normal">Experience</h2>
           <ul class="timeline mt-4 pr-md-5">
+            {% for dic in exprience %}
             <li>
-              <div class="title">2021 - Current</div>
+              <div class="title">{{ dic.date }}</div>
               <div class="details">
-                <h5>차세대 UCube 프로젝트</h5>
-                <small class="fg-theme">Company</small>
-                <p>LG U+의 차세대 UCube 상담파트 설계 및 개발 참여</p>
-                <p>FE(WebSqaure), BE(Spring Boot, MariaDB)</p>
-                <p>MSA, Rest API, Kafka, MySQL</p>
+                <h5>{{ dic.title }}</h5>
+                <small class="fg-theme">{{ dic.subTitle }}</small>
+                <p>{{ dic.content }}</p>
               </div>
             </li>
+            {% endfor %}
           </ul>
         </div>
       </div>
     </div>
+
+    {% if skills %}
     <div class="container py-5">
       <h1 class="text-center fw-normal wow fadeIn">My Skills</h1>
       <div class="row py-3">
+        {% for skill in skills %}
         <div class="col-md-6">
           <div class="px-lg-3">
-            <h4 class="wow fadeInUp">Coding skills</h4>
             <div class="progress-wrapper wow fadeInUp">
-              <span class="caption">JavaScript</span>
+              <span class="caption">{{ skill.name }}</span>
               <div class="progress">
                 <div class="progress-bar" role="progressbar" style="width: 86%;" aria-valuenow="75" aria-valuemin="0"
-                  aria-valuemax="100">86%</div>
+                  aria-valuemax="100">{{ skill.proficiency }}</div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="px-lg-3">
-            <h4 class="wow fadeInUp">Design Skills</h4>
-            <div class="progress-wrapper wow fadeInUp">
-              <span class="caption">UI / UX Design</span>
-              <div class="progress">
-                <div class="progress-bar" role="progressbar" style="width: 92%;" aria-valuenow="75" aria-valuemin="0"
-                  aria-valuemax="100">92%</div>
-              </div>
-            </div>
-          </div>
-        </div>
+        {% endfor %}
       </div>
     </div>
+    {% endif %}
   </div>
   <!-- End About-->
   
+  {% if services %}
   <div class="vg-page page-service" style="background-image: url('/static/portfolio/img/bg_banner.jpg');">
     <div class="container">
-      <div class="text-center wow fadeInUp text-service">
-        <div class="badge badge-subhead">Service</div>
-      </div>
       <h1 class="fw-normal text-center wow fadeInUp text-service">What can i do?</h1>
       <div class="row mt-5">
+        {% for service in services %}
         <div class="col-md-6 col-lg-4 col-xl-3">
           <div class="card card-service wow fadeInUp">
             <div class="icon">
               <span class="ti-desktop"></span>
             </div>
             <div class="caption">
-              <h4 class="fg-theme">Web Development</h4>
-              <p>There are many variations of passages of Lorem Ipsum available</p>
+              <h4 class="fg-theme">{{ service.name }}</h4>
+              <p>{{ service.comment }}</p>
             </div>
           </div>
         </div>
+        {% endfor %}
       </div>
     </div>
   </div>
+  {% endif %}
 
   <!-- Footer -->
   <div class="vg-footer">
