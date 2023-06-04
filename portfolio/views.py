@@ -1,76 +1,58 @@
 from django.shortcuts import render
+from portfolio.models import Introduce, Experience, Skill
+
+import datetime
+
 
 def getPortfolioIntroduce(request):
     template = 'portfolio/index.html'
     context = { 
         "introduce": getIntroduce(),
-        "study" : getStudy(),
-        "exprience" : getExperience(),
+        "education" : getExperience("E"),
+        "projects" : getExperience("P"),
         "skills" : getSkills(),
-        "services" : getService(),
+        "services" : getExperience("S"),
     }
 
     return render(request, template, context)
 
+
 def getIntroduce():
-    introduce = {
-        "name": "강형구",
-        "job": "Software Engineer",
-        "aboutMe" : "",
-        "address" : "Seoul, South Korea",
-        "age" : "31",
+    introduce = Introduce.objects.all().order_by("id").reverse()[0]
+    responseData = {
+        "name": introduce.name, 
+        "job": introduce.job, 
+        "aboutMe": introduce.aboutMe, 
+        "address": introduce.address, 
+        "age": introduce.age
     }
 
-    return introduce
+    return responseData
 
-def getStudy():
-    study = [
-        {
-            "date" : "23.09",
-            "title" : "SQLD",
-            "subTitle" : "Lisence",
-            "content" : "Kdata 데이터자격검정, SQL Developer"
-        },
-        {
-            "date" : "14.03 ~ 21.02",
-            "title" : "경희대학교 졸업",
-            "subTitle" : "University",
-            "content" : "소프트웨어융합대학 컴퓨터공학과 학사 졸업"
-        },
-    ]
 
-    return study
+def getExperience(experienceDivsCd):
+    experienceList = Experience.objects.all().filter(experinceDivsCd=experienceDivsCd).order_by("strtDate").reverse()
 
-def getExperience():
-    experience = [
-        {
-            "date" : "21.11 ~ Current",
-            "title" : "차세대 UCube 프로젝트",
-            "subTitle" : "LG CNS",
-            "content" : "LG U+의 차세대 UCube 상담파트 설계 및 개발 참여 \nFE(WebSqaure), BE(Spring Boot, MariaDB), MSA, Rest API, Kafka, MySQL"
-        },
-    ]
+    responseList = []
+    for experience in experienceList:
+        responseList.append({
+            "date" : datetime.datetime.strftime(experience.strtDate, '%y.%m') + " ~ " + datetime.datetime.strftime(experience.endDate, '%y.%m'),
+            "title" : experience.title,
+            "subTitle" : experience.subTitle,
+            "content" : experience.content
+        })
 
-    return experience
+    return responseList
+
 
 def getSkills():
-    skills = [
-        {
-            "name" : "java",
-            "proficiency" : "80%"
-        }
-    ]
+    skillList = Skill.objects.all()
 
-    return skills
+    responseList = []
+    for experience in skillList:
+        responseList.append({
+            "name" : experience.name,
+            "proficiency" : experience.proficiency
+        })
 
-def getService():
-    services = [
-        {
-            "date" : "21.11 ~ Current",
-            "title" : "title",
-            "subTitle" : "subTitle",
-            "content" : "Something"
-        }
-    ]
-
-    return services
+    return responseList

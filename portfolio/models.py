@@ -1,6 +1,7 @@
 from django.db import models
 
 class Introduce(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=10, null=False)
     job = models.CharField(max_length=30, null=False)
     aboutMe = models.TextField(null=False)
@@ -14,6 +15,7 @@ class Experience(models.Model):
         ('S', 'Service')
     )
 
+    id = models.AutoField(primary_key=True)
     strtDate = models.DateField(null=False)
     endDate = models.DateField(null=True)
     experinceDivsCd = models.CharField(max_length=1, choices=EXPERIENCE_DIVS_CD, null=False)
@@ -22,5 +24,6 @@ class Experience(models.Model):
     content = models.TextField()
 
 class Skill(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=30, null=False)
     proficiency = models.IntegerField(null=False)
