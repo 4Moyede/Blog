@@ -66,14 +66,13 @@
         </div>
         <div class="col-lg-6 offset-lg-1 wow fadeInRight">
           <h1 class="fw-light">{{ introduce.name }}</h1>
-          <h5 class="fg-theme mb-3">{{ introduce.jobGrp }}</h5>
+          <h5 class="fg-theme mb-3">{{ introduce.job }}</h5>
           <p class="text-muted">
             {{ introduce.aboutMe }}
           </p>
           <ul class="theme-list">
-            {% for map in about %}
-            <li><b>{{ map.key }} :</b> {{ map.val }}</li>
-            {% endfor %}
+            <li><b>Address :</b> {{ introduce.address }}</li>
+            <li><b>Age :</b> {{ introduce.age }}</li>
           </ul>
         </div>
       </div>
@@ -148,8 +147,8 @@
               <span class="ti-desktop"></span>
             </div>
             <div class="caption">
-              <h4 class="fg-theme">{{ service.name }}</h4>
-              <p>{{ service.comment }}</p>
+              <h4 class="fg-theme">{{ service.title }}</h4>
+              <p>{{ service.content }}</p>
             </div>
           </div>
         </div>

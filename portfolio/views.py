@@ -4,7 +4,6 @@ def getPortfolioIntroduce(request):
     template = 'portfolio/index.html'
     context = { 
         "introduce": getIntroduce(),
-        "about" : getAbout(),
         "study" : getStudy(),
         "exprience" : getExperience(),
         "skills" : getSkills(),
@@ -16,29 +15,13 @@ def getPortfolioIntroduce(request):
 def getIntroduce():
     introduce = {
         "name": "강형구",
-        "jobGrp": "Software Engineer",
-        "aboutMe" : ""
+        "job": "Software Engineer",
+        "aboutMe" : "",
+        "address" : "Seoul, South Korea",
+        "age" : "31",
     }
 
     return introduce
-
-def getAbout():
-    about = [
-        {
-            "key" : "From",
-            "val" : "Seoul, South Korea"
-        },
-        {
-            "key" : "Age",
-            "val" : "31"
-        },
-        {
-            "key" : "Gender",
-            "val" : "Male"
-        },
-    ]
-
-    return about
 
 def getStudy():
     study = [
@@ -83,8 +66,10 @@ def getSkills():
 def getService():
     services = [
         {
-            "name" : "WebApp",
-            "comment" : "Something"
+            "date" : "21.11 ~ Current",
+            "title" : "title",
+            "subTitle" : "subTitle",
+            "content" : "Something"
         }
     ]
 
